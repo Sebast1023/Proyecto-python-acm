@@ -1,3 +1,4 @@
+<p align="center"> <img src="img/images.png" width="15%"> </p>
 <h1 align="center">Bot de Correo Spam</h1>
 <p align="center">
 <b>Sebastian David Trujillo Vargas<br>
