@@ -104,7 +104,7 @@ no deseados o spam.El bot utiliza reglas simples y conexión IMAP para analizar 
   <tr><td>Estructuras de control</td><td>Validar conexión a cada correo ingresado.</td></tr>
   <tr><td>Funciones</td><td>Funciones de conexión, lectura, modificación y borrado.</td></tr>
   <tr><td>Funciones Lambda</td><td>Transformaciones de datos con <code>map()</code> y <code>filter()</code>.</td></tr>
-  <tr><td>*args y **kwargs</td><td>?.</td></tr>
+  <tr><td>*args y **kwargs</td><td>Para crear funciones flexibles que acepten múltiples argumentos (por ejemplo, listas de palabras clave o remitentes) sin definirlos explícitamente uno por uno</td></tr>
   <tr><td>Pandas</td><td>Manipulación de DataFrames y generación de reportes.</td></tr>
   <tr><td>Manejo de archivos</td><td>Lectura/escritura de CSV</td></tr>
   <tr><td>Manejo de errores</td><td>Uso de <code>try/except</code> para fallas de conexión a cuenta, conexión de internet o respuesta de API de correo.</td></tr>
