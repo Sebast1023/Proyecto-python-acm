@@ -26,7 +26,7 @@ El bot utiliza reglas simples y conexión IMAP para analizar los correos y mover
 <h3>⚙️ ¿Cómo funciona?</h3>
 <ol>
   <li>El usuario ejecuta el bot desde la consola.</li>
-  <li>Se conecta a su cuenta de correo mediante el protocolo <strong>IMAP</strong> (autenticación segura con usuario y contraseña de aplicación).</li>
+  <li>Se conecta a su cuenta de correo mediante el protocolo <strong>IMAP</strong> (autenticación segura con usuario y contraseña de aplicación) o por la Microsoft Graph API.</li>
   <li>Descarga los asuntos y remitentes de los correos recientes.</li>
   <li>Aplica reglas de detección (por palabras clave o listas de remitentes).</li>
   <li>Mueve o elimina los mensajes clasificados como spam.</li>
@@ -56,14 +56,14 @@ El bot utiliza reglas simples y conexión IMAP para analizar los correos y mover
 <h3>Qué no incluirá</h3>
 <ul>
   <li>No implementará un modelo de inteligencia artificial.</li>
-  <li>No manejará interfaz gráfica</li>
+  <li>No manejará interfaz gráfica interactiva.</li>
 </ul>
 
 <p><em>Estas funciones quedan fuera del alcance por la complejidad técnica y el tiempo disponible.</em></p>
 
 <hr>
 
-<h2>0Categoría</h2>
+<h2>Categoría</h2>
 <p>La aplicación cae en las categorías de <strong>automatización</strong> y <strong>aplicación interactiva por consola</strong>.</p>
 
 <hr>
@@ -82,6 +82,8 @@ El bot utiliza reglas simples y conexión IMAP para analizar los correos y mover
   <tr><td>email</td><td>Análisis del contenido de los mensajes.</td></tr>
   <tr><td>re</td><td>Búsqueda de palabras clave con expresiones regulares.</td></tr>
   <tr><td>pandas</td><td>Manipulación de datos y generación de reportes.</td></tr>
+  <tr><td>msal</td><td>Manejar la autenticación con Microsoft (OAuth2) y obtener el token de acceso.</td></tr>
+  <tr><td>requests</td><td>Hacer peticiones HTTP a la API de Microsoft Graph (leer correos, archivos, etc.)</td></tr>
 </table>
 
 <hr>
