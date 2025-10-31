@@ -1,121 +1,87 @@
-<p align="center"> <img src="img/images.png" width="15%"> </p>
-<h1 align="center">Bot de Correo Spam</h1>
-<p align="center">
-<b>Sebastian David Trujillo Vargas<br>
-  Yhoan Mauricio Bermudez Tique<br>
-  21/10/2025<br>
-  Python de 0 a 100 </b> 
-</p><hr>
-<h2>Descripción</h2>
-<p>El proyecto consiste en un bot automatizado desarrollado en Python que ayuda a los estudiantes a limpiar su bandeja de entrada eliminando mensajes 
-no deseados o spam.El bot utiliza reglas simples y conexión IMAP para analizar los correos y mover los mensajes sospechosos a la carpeta de spam o eliminarlos. De esta manera, el usuario ahorra tiempo y mantiene su correo organizado. </p>
-<h3>Problemática o necesidad</h3>
-<p>Los estudiantes suelen recibir gran cantidad de correos no deseados: promociones, suscripciones y notificaciones irrelevantes. Revisar y borrar estos mensajes manualmente consume tiempo que podría aprovecharse en tareas académicas. Este bot busca automatizar esa limpieza, detectando mensajes de spam con base en palabras clave o remitentes repetidos. </p>
-
-<h2>Descripción General</h2>
-<p>Este proyecto es un <strong>bot automatizado en Python</strong> que analiza los correos electrónicos de la cuenta del usuario, identifica mensajes no deseados mediante palabras clave y los elimina o marca como spam.</p>
-
-<h3>¿Qué hace el proyecto?</h3>
-<ol>
-  <li>Analiza los correos electrónicos de la cuenta del usuario.</li>
-  <li>Identifica mensajes que contienen palabras clave como “promoción”, “suscríbete”, “casino”, “gana dinero”, etc.</li>
-  <li>Los marca como spam o los elimina directamente.</li>
-</ol>
-
-<h3>⚙️ ¿Cómo funciona?</h3>
-<ol>
-  <li>El usuario ejecuta el bot desde la consola.</li>
-  <li>Se conecta a su cuenta de correo mediante el protocolo <strong>IMAP</strong> (autenticación segura con usuario y contraseña de aplicación) o por la Microsoft Graph API.</li>
-  <li>Descarga los asuntos y remitentes de los correos recientes.</li>
-  <li>Aplica reglas de detección (por palabras clave o listas de remitentes).</li>
-  <li>Mueve o elimina los mensajes clasificados como spam.</li>
-</ol>
-
-<h3>Resultados esperados</h3>
-<ul>
-  <li>Bandeja de entrada más limpia y ordenada.</li>
-  <li>Ahorro de tiempo al eliminar correos basura automáticamente.</li>
-  <li>Reporte con cantidad de correos revisados, detectados y eliminados.</li>
-</ul>
-
-<hr>
-
-<h2>Alcance</h2>
-
-<h3>Qué si incluirá</h3>
-<ul>
-  <li>Conexión IMAP al correo electrónico.</li>
-  <li>Búsqueda y lectura de correos recientes.</li>
-  <li>Filtrado mediante palabras clave y remitentes.</li>
-  <li>Eliminación o traslado a carpeta de spam.</li>
-  <li>Generación de un reporte con estadísticas.</li>
-  <li>Interfaz por consola simple para que el usuario elija acciones.</li>
-</ul>
-
-<h3>Qué no incluirá</h3>
-<ul>
-  <li>No implementará un modelo de inteligencia artificial.</li>
-  <li>No manejará interfaz gráfica interactiva.</li>
-</ul>
-
-<p><em>Estas funciones quedan fuera del alcance por la complejidad técnica y el tiempo disponible.</em></p>
-
-<hr>
-
-<h2>Categoría</h2>
-<p>La aplicación cae en las categorías de <strong>automatización</strong> y <strong>aplicación interactiva por consola</strong>.</p>
-
-<hr>
-
-<h2>Tecnologías y Herramientas</h2>
-<ul>
-  <li><strong>Lenguaje:</strong> Python 3.11</li>
-  <li><strong>Entorno:</strong> Visual Studio Code</li>
-  <li><strong>Protocolo:</strong> IMAP (para leer correos)</li>
-</ul>
-
-<h3>Librerías principales</h3>
-<table>
-  <tr><th>Librería</th><th>Función</th></tr>
-  <tr><td>imaplib</td><td>Conexión y lectura de correos.</td></tr>
-  <tr><td>email</td><td>Análisis del contenido de los mensajes.</td></tr>
-  <tr><td>re</td><td>Búsqueda de palabras clave con expresiones regulares.</td></tr>
-  <tr><td>pandas</td><td>Manipulación de datos y generación de reportes.</td></tr>
-  <tr><td>msal</td><td>Manejar la autenticación con Microsoft (OAuth2) y obtener el token de acceso.</td></tr>
-  <tr><td>requests</td><td>Hacer peticiones HTTP a la API de Microsoft Graph (leer correos, archivos, etc.)</td></tr>
-</table>
-
-<hr>
-
-<h2>Fuentes de Datos</h2>
-<ol>
-  <li>Ingresadas por el usuario: correos o contraseñas.</li>
-  <li>Respuestas de la API de Microsoft y conexión IMAP.</li>
-</ol>
-
-<p>🔗 <a href="https://learn.microsoft.com/es-es/graph/use-the-api">Documentación de Microsoft Graph API</a></p>
-
-<hr>
-
-<h2>Conceptos aplicados del curso</h2>
-<table>
-  <tr><th>Concepto</th><th>Aplicación</th></tr>
-  <tr><td>Variables y tipos de datos</td><td>Almacenar los correos y contraseñas.</td></tr>
-  <tr><td>Estructuras de control</td><td>Validar conexión a cada correo ingresado.</td></tr>
-  <tr><td>Funciones</td><td>Funciones de conexión, lectura, modificación y borrado.</td></tr>
-  <tr><td>Funciones Lambda</td><td>Transformaciones de datos con <code>map()</code> y <code>filter()</code>.</td></tr>
-  <tr><td>*args y **kwargs</td><td>Para crear funciones flexibles que acepten múltiples argumentos (por ejemplo, listas de palabras clave o remitentes) sin definirlos explícitamente uno por uno</td></tr>
-  <tr><td>Pandas</td><td>Manipulación de DataFrames y generación de reportes.</td></tr>
-  <tr><td>Manejo de archivos</td><td>Lectura/escritura de CSV</td></tr>
-  <tr><td>Manejo de errores</td><td>Uso de <code>try/except</code> para fallas de conexión a cuenta, conexión de internet o respuesta de API de correo.</td></tr>
-</table>
-<hr>
-
-<h2>Resultados Esperados</h2>
-<ul>
-  <li>Bot funcional que detecta y elimina correos spam.</li>
-  <li>Reporte automático con estadísticas: revisados, eliminados y tiempo de ejecución.</li>
-  <li>Código modular, limpio y documentado.</li>
-</ul>
-
-<hr>
+<p align="center"> <img src="img/images.png" width="15%"> </p> 
+<h1 align="center">Bot de Correo Spam</h1> 
+<p align="center"> 
+<b>Sebastian David Trujillo Vargas
+<br> Yhoan Mauricio Bermudez Tique
+<br> 21/10/2025
+<br> Python de 0 a 100 </b> 
+</p><hr> <h2>Descripción</h2> 
+<p>El proyecto consiste en un bot automatizado desarrollado en Python que ayuda a los estudiantes a limpiar su bandeja de entrada eliminando mensajes no deseados o spam. El bot utiliza reglas simples y conexión POP3 para analizar los correos y mover los mensajes sospechosos a la carpeta de spam o eliminarlos. De esta manera, el usuario ahorra tiempo y mantiene su correo organizado. </p> 
+<h3>Problemática o necesidad</h3> 
+<p>Los estudiantes suelen recibir gran cantidad de correos no deseados: promociones, suscripciones y notificaciones irrelevantes. Revisar y borrar estos mensajes manualmente consume tiempo que podría aprovecharse en tareas académicas. Este bot busca automatizar esa limpieza, detectando mensajes de spam con base en palabras clave o remitentes repetidos.</p> 
+<hr> <h2>Descripción General</h2> 
+<p>Este proyecto es un <strong>bot automatizado en Python</strong> que analiza los correos electrónicos de la cuenta del usuario, identifica mensajes no deseados mediante palabras clave y los elimina o marca como spam.</p> 
+<h3>¿Qué hace el proyecto?</h3> 
+<ol> <li>Analiza los correos electrónicos de la cuenta del usuario.</li> 
+<li>Identifica mensajes que contienen palabras clave como “promoción”, “suscríbete”, “casino”, “gana dinero”, etc.</li> 
+<li>Los marca como spam o los elimina directamente.</li> </ol> 
+<h3>⚙️ ¿Cómo funciona?</h3> 
+<ol> <li>El usuario ejecuta el bot desde la consola.</li> 
+<li>Se conecta a su cuenta de correo mediante el protocolo <strong>POP3</strong>, que permite descargar los mensajes al sistema local para su análisis.</li> 
+<li>Descarga los asuntos y remitentes de los correos recientes.</li> 
+<li>Aplica reglas de detección (por palabras clave o listas de remitentes).</li> 
+<li>Elimina o clasifica los mensajes detectados como spam.</li> 
+</ol> <h3>Fuentes de palabras clave y remitentes</h3> 
+<p>El bot utilizará un archivo de configuración externo (por ejemplo, <code>config.json</code> o <code>datos.csv</code>) que contendrá:</p> 
+<ul> <li>Credenciales del usuario (correo y contraseña de aplicación).</li> 
+<li>Palabras clave y remitentes a bloquear.</li> 
+</ul> <p>El archivo será editable desde la consola, de modo que el usuario pueda modificar las listas de spam o actualizar sus datos sin tocar el código directamente.</p> <h3>Resultados esperados</h3> 
+<ul> <li>Bandeja de entrada más limpia y ordenada.</li> 
+<li>Ahorro de tiempo al eliminar correos basura automáticamente.</li> 
+<li>Reporte con cantidad de correos revisados, detectados y eliminados.</li> </ul> 
+<hr> <h2>Alcance</h2> 
+<h3>Qué sí incluirá</h3> 
+<ul> <li>Conexión POP3 al correo electrónico.</li> 
+<li>Búsqueda y lectura de correos recientes.</li> 
+<li>Filtrado mediante palabras clave y remitentes.</li> 
+<li>Eliminación o clasificación de correos como spam.</li> <li>Archivo externo con credenciales y listas de spam editables desde consola.</li> 
+<li>Generación de un reporte con estadísticas.</li> 
+<li>Interfaz por consola simple para que el usuario elija acciones.</li> 
+</ul> <h3>Qué no incluirá</h3> 
+<ul> <li>No implementará un modelo de inteligencia artificial.</li> 
+<li>No manejará interfaz gráfica interactiva.</li> 
+<li>No incluirá conexión IMAP, solo POP3.</li> 
+</ul> <p><em>Estas funciones quedan fuera del alcance por la complejidad técnica y el tiempo disponible.</em></p> 
+<hr> <h2>Categoría</h2> 
+<p>La aplicación cae en las categorías de <strong>automatización</strong> y <strong>aplicación interactiva por consola</strong>.</p> 
+<hr> <h2>Tecnologías y Herramientas</h2> 
+<ul> <li><strong>Lenguaje:</strong> Python 3.11</li> 
+<li><strong>Entorno:</strong> Visual Studio Code</li> <li><strong>Protocolo:</strong> POP3 (para lectura de correos)</li> </ul> 
+<h3>Librerías principales</h3> 
+<table> <tr><th>Librería</th>
+  <th>Función</th></tr> 
+  <tr><td>poplib</td>
+  <td>Conexión y lectura de correos mediante POP3.</td></tr> 
+  <tr><td>email</td>
+  <td>Análisis del contenido de los mensajes.</td></tr> 
+  <tr><td>re</td>
+  <td>Búsqueda de palabras clave con expresiones regulares.</td></tr> 
+  <tr><td>pandas</td><td>Manipulación de datos y generación de reportes.</td></tr> 
+  <tr><td>json</td><td>Lectura y modificación del archivo de configuración.</td></tr> </table> 
+<hr> <h2>Fuentes de Datos</h2> 
+<ol> <li>Archivo local de configuración con credenciales y palabras clave.</li> 
+<li>Correos obtenidos mediante conexión POP3.</li> </ol> 
+<hr> <h2>Conceptos aplicados del curso</h2> 
+<table> <tr><th>Concepto</th>
+  <th>Aplicación</th></tr> 
+  <tr><td>Variables y tipos de datos</td>
+  <td>Almacenar correos, credenciales y listas de palabras clave.</td></tr> 
+  <tr><td>Estructuras de control</td>
+  <td>Validar la conexión y clasificar correos según criterios de spam.</td></tr> 
+  <tr><td>Funciones</td>
+  <td>Para conexión, lectura, análisis y eliminación de correos.</td>
+  </tr> <tr><td>Funciones Lambda</td>
+  <td>Filtrado rápido de mensajes con <code>map()</code> y <code>filter()</code>.</td></tr> 
+  <tr><td>*args y **kwargs</td>
+  <td>Para manejar listas flexibles de palabras clave y remitentes.</td></tr> 
+  <tr><td>Pandas</td>
+  <td>Creación de reportes y conteos de correos revisados.</td>
+  </tr> <tr><td>Manejo de archivos</td>
+  <td>Lectura y escritura del archivo de configuración (JSON o CSV).</td></tr> 
+  <tr><td>Manejo de errores</td>
+  <td>Uso de <code>try/except</code> para controlar fallos de conexión o acceso.</td></tr> </table> 
+<hr> <h2>Resultados Esperados</h2> 
+<ul> <li>Bot funcional que detecta y elimina correos spam.</li> 
+<li>Reporte automático con estadísticas: revisados, eliminados y tiempo de ejecución.</li> 
+<li>Código modular, limpio y documentado.</li> 
+<li>Archivo externo editable desde consola con listas de spam.</li> </ul>
