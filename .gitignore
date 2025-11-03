@@ -1,0 +1,88 @@
+# --- Archivos de Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+*.egg
+*.egg-info/
+*.manifest
+*.spec
+
+# --- Entornos virtuales ---
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# --- Archivos de configuración local ---
+*.env
+*.ini
+*.cfg
+*.toml
+*.json
+
+# --- Archivos de Jupyter Notebook ---
+.ipynb_checkpoints
+
+# --- Logs y archivos temporales ---
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# --- Datos y resultados ---
+data/
+datasets/
+*.csv
+*.xlsx
+*.xls
+*.json
+*.db
+*.sqlite
+*.parquet
+*.zip
+*.tar.gz
+*.h5
+
+# --- Salidas de ejecución o análisis ---
+outputs/
+reports/
+plots/
+figures/
+images/
+results/
+*.png
+*.jpg
+*.svg
+*.pdf
+
+# --- Archivos de herramientas de desarrollo ---
+.idea/
+.vscode/
+.settings/
+__MACOSX/
+
+# --- Compilaciones o distribuciones ---
+build/
+dist/
+*.egg-info/
+*.whl
+
+# --- Cache de librerías ---
+*.ipynb_checkpoints
+.pytest_cache/
+.cache/
+.mypy_cache/
+.pyre/
+.pytype/
+.dmypy.json
+
+# --- Configuración de Flet o FastAPI ---
+*.db
+*.sqlite3
+*.uvicorn.log
