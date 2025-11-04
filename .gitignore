@@ -22,7 +22,6 @@ ENV/
 *.ini
 *.cfg
 *.toml
-*.json
 
 # --- Archivos de Jupyter Notebook ---
 .ipynb_checkpoints
@@ -41,7 +40,6 @@ datasets/
 *.csv
 *.xlsx
 *.xls
-*.json
 *.db
 *.sqlite
 *.parquet
@@ -54,12 +52,8 @@ outputs/
 reports/
 plots/
 figures/
-images/
 results/
-*.png
-*.jpg
 *.svg
-*.pdf
 
 # --- Archivos de herramientas de desarrollo ---
 .idea/
