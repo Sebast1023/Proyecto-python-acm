@@ -1,4 +1,4 @@
-from ConexionJson import ConexionJSON
+from src.Modelo.ConexionJson import ConexionJSON
 
 
 class ControlConexion:
@@ -23,3 +23,11 @@ class ControlConexion:
 
         print("✅ Credenciales cargadas correctamente.")
         return correo, contrasena
+    
+    def guardar_credenciales(self, email, password):
+        """Guarda las credenciales en el archivo JSON."""
+        datos = {
+            "email": email,
+            "password": password
+        }
+        self.conexion_json.escribir_datos(datos)
