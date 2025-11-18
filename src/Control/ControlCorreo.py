@@ -58,6 +58,24 @@ class ControlCorreo:
     def eliminar_correo(self, correo_id):
         """Elimina un correo específico por su ID."""
         self.mail.store(correo_id, '+FLAGS', '\\Deleted')
+        
+    def marcar_correo(self, correo_id):
+        """Marca un correo específico como spam"""
+
+        """Busca la carpeta de spam/junk"""
+        result, folders = self.mail.list()
+        for folder in folders:
+            folder_decoded = folder.decode().lower()    
+            # Buscar flag o nombre indicativo de spam/junk
+            if "\\spam" in folder_decoded or "spam" in folder_decoded or "junk" in folder_decoded:
+                carpeta_spam = folder.decode().split(' "/" ')[-1]  # Extraer el nombre real
+                break             
+
+        """Copiar el correo a la carpeta SPAM"""
+        self.mail.copy(correo_id, carpeta_spam)
+
+        """Elimina el correo de carpeta de origen"""
+        self.eliminar_correo(correo_id)
 
     def cerrar(self):
         """Guarda y cierra la sesión."""
