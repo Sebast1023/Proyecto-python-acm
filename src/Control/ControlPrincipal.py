@@ -24,65 +24,25 @@ class ControlPrincipal:
                 self.menu.ir_a_filtros()
 
             elif opcion == Opciones.AGREGAR_PALABRA:
-                palabra = input("Ingrese la palabra/frase a agregar a los filtros: ")
-                filtros = self.control_filtro.obtener_filtros()
-                if palabra.strip() == "":
-                    print("La palabra/frase no puede estar vacía.")
-                    continue
-                if not (palabra in filtros["palabras_clave"]):
-                    filtros["palabras_clave"].append(palabra)                  
-                self.control_filtro.guardar_filtros(filtros["palabras_clave"], filtros["remitentes"])
-                print("Palabras actuales en los filtros:", filtros["palabras_clave"]) 
+                self.agregar_palabra()
 
-            elif opcion == Opciones.ELIMINAR_PALABRA:
-                filtros = self.control_filtro.obtener_filtros()
-                print("Palabras/frases actuales en los filtros:", filtros["palabras_clave"])                    
-                palabra = input("Ingrese la palabra/frase a eliminar de los filtros: ")  
-                              
-                if palabra in filtros["palabras_clave"]:
-                    filtros["palabras_clave"].remove(palabra)
-                    self.control_filtro.guardar_filtros(filtros["palabras_clave"], filtros["remitentes"])
-                else:
-                    print("La palabra/frase no está en los filtros.")
+            elif opcion == Opciones.ELIMINAR_PALABRA:                
+                self.eliminar_palabra()
 
             elif opcion == Opciones.AGREGAR_REMITENTE:
-                remitente = input("Ingrese el remitente a agregar a los filtros: ").lower()
-                if remitente.strip() == "":
-                    print("El remitente no puede estar vacío.")
-                    continue
-                if Utilidades.validar_email(remitente) is False:
-                    print("Formato de correo no valido")
-                    continue
-                filtros = self.control_filtro.obtener_filtros()
-                if not (remitente in filtros["remitentes"]):
-                    filtros["remitentes"].append(remitente)
-                self.control_filtro.guardar_filtros(filtros["palabras_clave"], filtros["remitentes"])
-                print("Remitentes actuales en los filtros:", filtros["remitentes"])
+                self.agregar_remitente()
 
             elif opcion == Opciones.ELIMINAR_REMITENTE:
-                remitente = input("Ingrese el remitente a eliminar de los filtros: ")
-                filtros = self.control_filtro.obtener_filtros()
-                if remitente in filtros["remitentes"]:
-                    filtros["remitentes"].remove(remitente)
-                    self.control_filtro.guardar_filtros(filtros["palabras_clave"], filtros["remitentes"])
-                else:
-                    print("El remitente no está en los filtros.")
+                self.eliminar_remitente()
 
             elif opcion == Opciones.ELIMINAR_TODOS_FILTROS:
-                if self.menu.continuar("¿Está seguro de que desea eliminar todos los filtros?"):
-                    self.control_filtro.guardar_filtros([], [])
-                    print("Todos los filtros han sido eliminados.")                        
+                self.eliminar_todos_filtros()
 
             elif opcion == Opciones.ELIMINAR_CORREOS:        
-                filtros = self.control_filtro.obtener_filtros()
-                print("Filtros actuales:", filtros["palabras_clave"], filtros["remitentes"])    
-                if self.menu.continuar("¿Desea continuar?"):                    
-                    self.eliminar_correos()                
+                self.eliminar_correos()                    
 
             elif opcion == Opciones.MARCAR_COMO_SPAM:
-                print("Filtros actuales:", filtros["palabras_clave"], filtros["remitentes"])    
-                if self.menu.continuar("¿Desea continuar?"):                    
-                    self.marcar_correos()                  
+                self.marcar_como_spam_correos()             
 
             elif opcion == Opciones.ATRAS: 
                 self.menu.ir_atras()        
@@ -91,32 +51,160 @@ class ControlPrincipal:
                 print("Saliendo de la aplicación")
                 break            
             else:
-                print("Opción no válida. Intente de nuevo")        
+                print("Opción no válida. Intente de nuevo") 
+
+    def agregar_remitente(self):
+        try:
+            remitente = input("Ingrese el remitente a agregar a los filtros: ").lower()
+            if remitente.strip() == "":
+                print("El remitente no puede estar vacío.")
+                return
+            if Utilidades.validar_email(remitente) is False:
+                print("Formato de correo no valido")
+                return
+            filtros = self.control_filtro.obtener_filtros()
+            if remitente not in filtros["remitentes"]:
+                filtros["remitentes"].append(remitente)
+                self.control_filtro.guardar_filtros(filtros["palabras_clave"], filtros["remitentes"])
+            print("Remitentes actuales en los filtros:", filtros["remitentes"])
+        except Exception as e:
+            print("Error al agregar remitente:", e)
+
+    def eliminar_remitente(self):
+        try:
+            remitente = input("Ingrese el remitente a eliminar de los filtros: ")
+            filtros = self.control_filtro.obtener_filtros()
+            if remitente in filtros["remitentes"]:
+                filtros["remitentes"].remove(remitente)
+                self.control_filtro.guardar_filtros(filtros["palabras_clave"], filtros["remitentes"])
+                print("Remitente eliminado.")
+            else:
+                print("El remitente no está en los filtros.")
+        except Exception as e:
+            print("Error al eliminar remitente:", e)
+
+    def eliminar_todos_filtros(self):
+        try:
+            if self.menu.continuar("¿Está seguro de que desea eliminar todos los filtros?"):
+                self.control_filtro.guardar_filtros([], [])
+                print("Todos los filtros han sido eliminados.")
+        except Exception as e:
+            print("Error al eliminar todos los filtros:", e)
+
+    def eliminar_correos(self):
+        try:
+            filtros = self.control_filtro.obtener_filtros()
+            print("Filtros actuales:", filtros["palabras_clave"], filtros["remitentes"])
+            if self.menu.continuar("¿Desea continuar?"):
+                self.eliminar_correos()
+        except Exception as e:
+            print("Error al iniciar eliminación de correos:", e)
+
+    def marcar_como_spam_correos(self):
+        try:
+            filtros = self.control_filtro.obtener_filtros()
+            print("Filtros actuales:", filtros["palabras_clave"], filtros["remitentes"])
+            if self.menu.continuar("¿Desea continuar?"):
+                self.marcar_correos()
+        except Exception as e:
+            print("Error al iniciar marcado de correos:", e)
+
+    def ir_atras(self):
+        try:
+            self.menu.ir_atras()
+        except Exception as e:
+            print("Error al navegar atrás:", e)
+
+    def agregar_palabra(self):
+        try:
+            palabra = input("Ingrese la palabra/frase a agregar a los filtros: ")
+            filtros = {"palabras_clave": [], "remitentes": []}
+            try:
+                filtros = self.control_filtro.obtener_filtros()
+            except Exception:
+                pass
+            
+            if palabra.strip() == "":
+                print("La palabra/frase no puede estar vacía.")
+                return
+            if not (palabra in filtros["palabras_clave"]):
+                filtros["palabras_clave"].append(palabra)                  
+            self.control_filtro.guardar_filtros(filtros["palabras_clave"], filtros["remitentes"])
+            print("Palabras actuales en los filtros:", filtros["palabras_clave"]) 
+        except Exception as e:
+            print("Error al agregar la palabra/frase:", e)
+
+    def eliminar_palabra(self):
+        try:
+            filtros = {"palabras_clave": [], "remitentes": []}
+            try:
+                filtros = self.control_filtro.obtener_filtros()
+            except Exception:
+                pass        
+            print("Palabras/frases actuales en los filtros:", filtros["palabras_clave"])                    
+            palabra = input("Ingrese la palabra/frase a eliminar de los filtros: ")  
+                            
+            if palabra in filtros["palabras_clave"]:
+                filtros["palabras_clave"].remove(palabra)
+                self.control_filtro.guardar_filtros(filtros["palabras_clave"], filtros["remitentes"])
+            else:
+                print("La palabra/frase no está en los filtros.")
+        except Exception as e:
+            print("Error al eliminar la palabra/frase:", e)
 
     def cambiar_credenciales(self):
-        email_account = input("Ingrese el nuevo correo electrónico: ")
-        if email_account.strip() == ":q":
-            return
-        if Utilidades.validar_email(email_account) is False:
-            print("Formato de correo no valido")
-            return
-        password = input("Ingrese la nueva contraseña: ")
-        if password.strip() == ":q":
-            return        
-        if email_account == "" or password == "":
-            print("El correo y la contraseña no pueden estar vacíos.")
-            return
-        try:
-            self.control_conexion.guardar_credenciales(email_account, password)            
-            print("Credenciales actualizadas correctamente. ")
-        except Exception as e:
-            print("Error al guardar las credenciales:", e)
-        
+        while True:
+            try:
+                print("\nEscriba ':q' para cancelar")
+                existe_usuario = True
+                actual_email = ""                
+                try:
+                    actual_email, _ = self.control_conexion.obtener_credenciales()            
+                except Exception as e:
+                    existe_usuario = False
+                email_account = ""
+                password = ""
+                if existe_usuario:            
+                    email_account = input("Ingrese el nuevo correo electrónico(n para cambiar solo contraseña): ")                                  
+                    if email_account.strip() == ":q":
+                        break
+                    if email_account.strip() != "n" and Utilidades.validar_email(email_account.strip()) is False:
+                        print("Formato de correo no valido")
+                        continue
+                    password = input("Ingrese la nueva contraseña: ")
+                    if password.strip() == ":q":
+                        break    
+                else:
+                    email_account = input("Ingrese el nuevo correo electrónico: ")                                  
+                    if email_account.strip() == ":q":
+                        break
+                    if Utilidades.validar_email(email_account.strip()) is False:
+                        print("Formato de correo no valido")
+                        continue
+                    password = input("Ingrese la nueva contraseña: ")
+                    if password.strip() == ":q":
+                        break    
+
+                if email_account == "" or password == "":
+                    print("El correo y la contraseña no pueden estar vacíos.")
+                    continue
+
+                if email_account.strip() == "n" and existe_usuario:
+                    email_account = actual_email
+                                                 
+                self.control_conexion.guardar_credenciales(email_account, password)            
+                print("Credenciales actualizadas correctamente. ")    
+                break                        
+            except Exception as e:
+                print("Error al guardar las credenciales:", e)
+                break
 
     def eliminar_correos(self):
         try:
             email_account, password = self.control_conexion.obtener_credenciales()
             self.procesar_correos(email_account, password)
+        except (FileNotFoundError, KeyError, ValueError) as err_cred:
+            print("Credenciales no existen o son inválidas(creelas desde el menu):", err_cred)
         except Exception as e:
             print("Error al borrar correo:", e)
 
@@ -124,6 +212,8 @@ class ControlPrincipal:
         try:
             email_account, password = self.control_conexion.obtener_credenciales()
             self.procesar_correos(email_account, password, "marcar")
+        except (FileNotFoundError, KeyError, ValueError) as err_cred:
+            print("Credenciales no existen o son inválidas(creelas desde el menu):", err_cred)
         except Exception as e:
             print("Error al marcar correos:", e)
 
