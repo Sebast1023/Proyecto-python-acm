@@ -1,4 +1,4 @@
-from Modelo.ConexionJson import ConexionJSON
+from src.Modelo.ConexionJson import ConexionJSON
 
 class ControlFiltro:
     def __init__(self):
