@@ -85,3 +85,31 @@
 <li>Reporte automático con estadísticas: revisados, eliminados y tiempo de ejecución.</li> 
 <li>Código modular, limpio y documentado.</li> 
 <li>Archivo externo editable desde consola con listas de spam.</li> </ul>
+<h2>Instalación</h2>
+<ol>
+    <li>Clonar el repositorio:
+        <pre class="command">git clone https://github.com/Sebast1023/Proyecto-python-acm.git</pre>
+    </li>
+    <li>Entrar a la carpeta del proyecto:
+        <pre class="command">cd Proyecto-python-acm</pre>
+    </li>
+    <li>Crear un entorno virtual (opcional pero recomendado):
+        <pre class="command">
+        
+# Windows
+python -m venv venv
+venv\Scripts\activate
+
+# Linux / macOS
+python -m venv venv
+source venv/bin/activate
+        </pre>
+        </li>
+        <li>Instalar dependencias:
+            <pre class="command">pip install -r requirements.txt</pre>
+        </li>
+    </ol>
+
+  <h2>Cómo ejecutar el proyecto</h2>
+  <p>Desde la raíz del proyecto (Proyecto-python-acm), ejecutar el launcher:</p>
+  <pre class="command">python -m src.Control.Launcher</pre>
