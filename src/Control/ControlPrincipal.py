@@ -39,7 +39,7 @@ class ControlPrincipal:
                 self.eliminar_todos_filtros()
 
             elif opcion == Opciones.ELIMINAR_CORREOS:        
-                self.eliminar_correos()                    
+                self.eliminar_correos_spam()                    
 
             elif opcion == Opciones.MARCAR_COMO_SPAM:
                 self.marcar_como_spam_correos()             
@@ -91,7 +91,7 @@ class ControlPrincipal:
         except Exception as e:
             print("Error al eliminar todos los filtros:", e)
 
-    def eliminar_correos(self):
+    def eliminar_correos_spam(self):
         try:
             filtros = self.control_filtro.obtener_filtros()
             print("Filtros actuales:", filtros["palabras_clave"], filtros["remitentes"])
