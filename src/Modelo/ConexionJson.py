@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 class ConexionJSON:
-    def __init__(self, ruta="specs/credentials.json"):
+    def __init__(self, ruta):
         self.ruta = Path(ruta)
 
     def leer_datos(self):

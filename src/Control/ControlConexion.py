@@ -3,7 +3,7 @@ from src.Modelo.ConexionJson import ConexionJSON
 
 class ControlConexion:
     def __init__(self):
-        self.conexion_json = ConexionJSON()
+        self.conexion_json = ConexionJSON("specs/credentials.json")
 
     def obtener_credenciales(self):
         """Lee las credenciales del JSON y valida su contenido."""
