@@ -1,4 +1,4 @@
-from ControlPrincipal import ControlPrincipal
+from src.Control.ControlPrincipal import ControlPrincipal
 
 
 class Launcher:
