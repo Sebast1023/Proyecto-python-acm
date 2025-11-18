@@ -5,11 +5,14 @@ from src.Control.ControlFiltro import ControlFiltro
 from src.Control.Opciones import Opciones
 from src.Control.Utilidades import Utilidades
 from email.utils import parseaddr
+from src.Control.ControlReportes import ControlReportes
+
 
 class ControlPrincipal:
     def __init__(self):
         self.control_conexion = ControlConexion()
         self.control_filtro = ControlFiltro()
+        self.control_reportes = ControlReportes()
         self.menu = Menu()
         self.ejecutar()
 
@@ -223,32 +226,39 @@ class ControlPrincipal:
         correos = correo_control.leer_todos()
         filtros = self.control_filtro.obtener_filtros()
 
-        if opcion == "eliminar":        
-            eliminados = 0
+        eliminados = []
+        marcados = []
 
-            for c in correos:
-                asunto = c["asunto"].lower()
-                nombre, remitente = parseaddr(c["remitente"].lower())
+        for c in correos:
+            asunto = c["asunto"].lower()
+            nombre, remitente = parseaddr(c["remitente"].lower())
+
+            if opcion == "eliminar":
                 if asunto in filtros["palabras_clave"] or remitente in filtros["remitentes"]:
-                    print(f"🗑️ Eliminando correo con asunto: {c['asunto']}")
                     correo_control.eliminar_correo(c["id"])
-                    eliminados += 1
+                    eliminados.append(c)
+                    print(f"🗑️ Eliminado: {c['asunto']}")
                 else:
-                    print(f"✅ Correo válido: {c['asunto']}")
+                    print(f"✔️ Válido: {c['asunto']}")
 
-            correo_control.cerrar()
-            print(f"\n🔹 Proceso finalizado. Correos eliminados: {eliminados}")
-
-        elif opcion == "marcar":
-            marcados = 0
-            for c in correos:
-                asunto = c["asunto"].lower()
+            elif opcion == "marcar":
                 if "spam" in asunto or "promocion" in asunto:
-                    print(f"Marcado como spam correo con asunto: {c['asunto']}")
                     correo_control.marcar_correo(c["id"])
-                    marcados += 1
+                    marcados.append(c)
+                    print(f"🚩 Marcado como spam: {c['asunto']}")
                 else:
-                    print(f"✅ Correo válido: {c['asunto']}")
-            correo_control.cerrar()
-            print(f"\n🔹 Proceso finalizado. Correos marcados como spam: {marcados}")
+                    print(f"✔️ Válido: {c['asunto']}")
+
+        correo_control.cerrar()
+
+        # === GENERAR REPORTES ===
+        self.control_reportes.generar_reporte_completo(correos)
+        self.control_reportes.generar_reporte_acciones(eliminados, marcados)
+        self.control_reportes.generar_resumen(
+            total=len(correos),
+            eliminados=eliminados,
+            marcados=marcados
+        )
+
+        print("\n🔹 Proceso finalizado.")
 
