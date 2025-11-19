@@ -1,6 +1,7 @@
 import pandas as pd
 from pathlib import Path
 from datetime import datetime
+import csv
 
 class ControlReportes:
     """
@@ -30,15 +31,22 @@ class ControlReportes:
             print("⚠️ No hay correos para generar reporte.")
             return
         
+        # Limpiar saltos de línea y comillas en el contenido para no romper el CSV
+        correosLimpio = list(map(
+            lambda c: {**c, "contenido": c["contenido"].replace("\r\n", "\\n").replace("\r", "\\n").replace("\n", "\\n").replace('"', '\\"')},
+            correos
+        ))
+
+
         # Convertir los datos a DataFrame para fácil exportación
-        df = pd.DataFrame(correos)
+        df = pd.DataFrame(correosLimpio)
 
         # Nombre único basado en fecha y hora
         fecha = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         ruta = f"reportes/reporte_completo_{fecha}.csv"
 
         # Exportar CSV
-        df.to_csv(ruta, index=False, encoding="utf-8")
+        df.to_csv(ruta, index=False, quoting= csv.QUOTE_ALL, escapechar='\\', encoding="utf-8-sig")
         print(f"📄 Reporte completo generado en: {ruta}")
 
     # ==========================================================
