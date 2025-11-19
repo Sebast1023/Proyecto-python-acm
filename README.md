@@ -1,8 +1,6 @@
 <p align="center"> <img src="img/images.png" width="15%"> </p> 
 <h1 align="center">Bot de Correo Spam</h1> 
-<p align="center"> 
-<b>Sebastian David Trujillo Vargas
-<br> Yhoan Mauricio Bermudez Tique
+<p align="center">
 <br> 21/10/2025
 <br> Python de 0 a 100 </b> 
 </p><hr> <h2>Descripción</h2> 
