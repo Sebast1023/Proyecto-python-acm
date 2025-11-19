@@ -373,7 +373,6 @@ class ControlPrincipal:
                     print(f"✔️ Válido: {c['asunto']}")
 
         correo_control.cerrar()
-        print(correos)
         # ---- GENERAR REPORTES ----
         self.control_reportes.generar_reporte_completo(correos)
         self.control_reportes.generar_reporte_acciones(eliminados, marcados)
