@@ -61,6 +61,9 @@ class ControlCorreo:
             # Obtener remitente
             sender = msg.get("From")
 
+            # Obtenemos la fecha 
+            date = msg.get("Date")
+
             # ---- Obtener cuerpo del mensaje ----
             body = ""
             if msg.is_multipart():  # Mensaje con varias partes
@@ -85,7 +88,8 @@ class ControlCorreo:
                 "id": num,
                 "remitente": sender,
                 "asunto": subject,
-                "contenido": body
+                "contenido": body,
+                "fecha": date                
             })
 
         return correos
